@@ -13,7 +13,7 @@
         <ul>
             <li>{{$user->name}}</li>
             <li>{{$user->email}}</li>
-            <li>{{date('d/m/Y' , strtotime($user->create_at))}}</li>
+            <li>{{date('Y-m-d H:i:s' , strtotime($user->create_at))}}</li>
         </ul>
 
     </div>
