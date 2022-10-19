@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Form;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Address;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class AddressController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('listAllUsers' ,['users' => $users]);
+        //
     }
 
     /**
@@ -26,8 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('createUser');
-
+        //
     }
 
     /**
@@ -38,32 +35,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $user->save();
-
-        return redirect()->route('user.index');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Address $address)
     {
-        $user = User::where('id', $id)->first();
-        if($user){
-            echo "Name: " . $user->name . "<br>";
-            echo "Email: " . $user->email . "<br>";
-
-        }
-
-        $address= $user->address()->first();
-
         if($address){
             echo "<h1>Address</h1>";
             echo "Street: {$address->street}<br>";
@@ -77,43 +59,34 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Address $address)
     {
-        return view('editUser', [
-            'user' => $user
-        ]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Address $address)
     {
-        $user->name = $request->name;
-        $user->email = $request->email;
-
-        $user->save();
-
-        return redirect()->route('user.index');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Address $address)
     {
-        $user = User::find($user->id);
-        $user->delete();
-        return redirect()->route('user.index');
+        //
     }
 }
