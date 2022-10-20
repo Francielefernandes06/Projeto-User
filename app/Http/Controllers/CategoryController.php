@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Address;
+use App\Models\Category;
+
 use Illuminate\Http\Request;
 
-class AddressController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,31 +42,38 @@ class AddressController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Address  $address
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Address $address)
+    public function show(Category $category)
     {
-        if($address){
-            echo "<h1>Address</h1>";
-            echo "Street: {$address->street}<br>";
-            echo "Number: {$address->number}<br>";
-            echo "City: {$address->city}<br>";
-            echo "State: {$address->state}<br>";
-            echo "Nome do Usuário: {$address->user->name}<br>";
-            echo "Email do Usuário: {$address->user->email}<br>";
+        echo "<h1>Categoria</h1>";
+        echo "ID: {$category->id}<br>";
+        echo "Name: {$category->name}<br>";
+        echo "Description: {$category->description}<br>";
 
+        $posts = $category->posts()->get();
+        if($posts){
+            echo "<h1>Atigos</h1>";
+            foreach($posts as $post){
+                echo "<p>Titulo: {$post->title}</p>";
+                echo "<p>Subtitulo: {$post->subtitle}</p>";
+                echo "<p>Conteudo: {$post->content}</p>";
+                echo "<p>Id do Autor: {$post->user_id}</p>";
+                echo "<p>Nome do Autor: {$post->author->name}</p>";
+                echo "<p>Email do Autor: {$post->author->email}</p>";
+                echo "<hr>";
+            }
         }
-        
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Address  $address
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Address $address)
+    public function edit($id)
     {
         //
     }
@@ -74,10 +82,10 @@ class AddressController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Address  $address
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Address $address)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -85,10 +93,10 @@ class AddressController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Address  $address
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Address $address)
+    public function destroy($id)
     {
         //
     }

@@ -55,23 +55,44 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::where('id', $id)->first();
-        if($user){
-            echo "Name: " . $user->name . "<br>";
-            echo "Email: " . $user->email . "<br>";
+        $user = User::find($id);
+        return view('listUser', ['user' => $user]);
 
-        }
 
-        $address= $user->address()->first();
 
-        if($address){
-            echo "<h1>Address</h1>";
-            echo "Street: {$address->street}<br>";
-            echo "Number: {$address->number}<br>";
-            echo "City: {$address->city}<br>";
-            echo "State: {$address->state}<br>";
+    //     $user = User::where('id', $id)->first();
+    //     if($user){
+    //         echo "<h1>Dados do Usuário</h1>";
+    //         echo "Name: " . $user->name . "<br>";
+    //         echo "Email: " . $user->email . "<br>";
+    //         echo "<hr>";
 
-        }
+    //     }
+
+    //     $address= $user->address()->first();
+
+    //     if($address){
+    //         echo "<h1>Address</h1>";
+    //         echo "Street: {$address->street}<br>";
+    //         echo "Number: {$address->number}<br>";
+    //         echo "City: {$address->city}<br>";
+    //         echo "State: {$address->state}<br>";
+    //         echo "<hr>";
+
+    //     }
+    //     $posts = $user->posts()->get();
+
+    //     if($posts){
+    //         echo "<h1>Posts</h1>";
+    //         foreach($posts as $post){
+    //             echo "ID: {$post->id}<br>";
+    //             echo "Title: {$post->title}<br>";
+    //             echo "Content: {$post->content}<br>";
+    //             echo "Created at: {$post->created_at}<br>";
+    //             echo "Updated at: {$post->updated_at}<br>";
+    //             echo "<hr>";
+    //         }
+       // }
     }
 
     /**

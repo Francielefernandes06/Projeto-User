@@ -10,11 +10,33 @@
 <body>
     <div class="container">
         <h1>Usuário</h1>
-        <ul>
-            <li>{{$user->name}}</li>
-            <li>{{$user->email}}</li>
-            <li>{{date('Y-m-d H:i:s' , strtotime($user->create_at))}}</li>
-        </ul>
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome </th>
+                <th scope="col">Email</th>
+                <th scope="col">Data</th>
+                <th scope="col">Informações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">{{$user->id}}</th>
+                <td>{{$user->name}}</td>
+                <td>{{$user->email}}</td>
+                <td>{{date('Y-m-d H:i:s' , strtotime($user->create_at))}}</td>
+                <td>
+                    <a href="{{route('address.show', $user-> id)}}" class="btn btn-primary">Endereço</a>
+                    <a href="{{route('post.show', $user-> id)}}" class="btn btn-primary">Artigos</a>
+
+
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+
 
     </div>
 
