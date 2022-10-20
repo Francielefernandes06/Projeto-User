@@ -46,4 +46,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(Address::class, 'user_id', 'id');
     }
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'user_id', 'id');
+    }
 }

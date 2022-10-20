@@ -46,7 +46,26 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        $user = $post->author()->first();
+        echo "<h1>Dados do Post</h1>";
+        echo "<p>Titulo: {$post->title}</p>";
+        echo "<p>Subtitulo: {$post->subtitle}</p>";
+        echo "<p>Conteudo: {$post->content}</p>";
+        echo "<p>Id do Autor: {$post->user_id}</p>";
+        echo "<p>Nome do Autor: {$post->author->name}</p>";
+        echo "<p>Email do Autor: {$post->author->email}</p>";
+
+        $categories = $post->categories()->get();
+
+        if($categories){
+            echo "<h1>Categorias</h1>";
+            foreach($categories as $category){
+                echo "<p># {$category->id}</p>";
+                echo "<p>{$category->name}</p>";
+            }
+
+        }
+
     }
 
     /**
@@ -94,7 +113,7 @@ class PostController extends Controller
         $post = new Post();
 
 
-        
+
         $post->create($request->except(['_token']));
         // $post->title = $request->title;
         // $post->body = $request->body;
